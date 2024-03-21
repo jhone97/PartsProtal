@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using PartsPortal.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -6,7 +9,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlite(builder.Configuration.GetConnectionString("Sqlite")));
 var app = builder.Build();
 
 
